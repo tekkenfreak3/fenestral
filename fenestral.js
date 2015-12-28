@@ -5,7 +5,7 @@ function Fenestral(){
     this.setup = function()
     {
         thingy = new jaws.Sprite({image: "dinosphere.png", x: 0, y: 0});
-        maptiles = new jaws.SpriteSheet({image: "tileset.png", frame_size: [16, 16]});
+        maptiles = new jaws.SpriteSheet({image: "tileset.png", frame_size: [16, 16], scale_image: 2});
     },
     this.update = function()
     {
