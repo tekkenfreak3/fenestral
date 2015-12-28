@@ -1,2 +1,2 @@
 
-document.getElementsByTagName("body")[0].append("Something");
+document.getElementsByTagName("body")[0].innerHTML += "Something";
