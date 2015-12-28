@@ -4,8 +4,8 @@ function Fenestral(){
     var tileIdx = 0;
     this.setup = function()
     {
-        thingy = {components: {position: new cPosition(0, 0), drawable: new cDrawable("dinosphere.png")}};
-        componentClaim(thingy);
+        thingy = createObject({components: {position: new cPosition(0, 0), drawable: new cDrawable("dinosphere.png")}});
+
         maptiles = new jaws.SpriteSheet({image: "tileset.png", frame_size: [16, 16], scale_image: 2});
     };
     
@@ -19,21 +19,30 @@ function Fenestral(){
     this.draw = function()
     {
         jaws.clear();
-        componentDraw(thingy);
+        thingy.draw();
         currentTile.draw();
     };
 
 
-    function componentDraw(o)
+    function createObject(o)
     {
-        _.each(o.components, function(elm, idx, l)
-               { if (elm.draw) { elm.draw();} });
-    };
+        function componentDraw()
+        {
+            _.each(this.components, function(elm, idx, l)
+                   { if (elm.draw) { elm.draw();} });
+        };
 
-    function componentClaim(o)
-    {
-        _.each(o.components, function(elm, idx, l)
-               { console.log("elm: " + elm); elm.owner = o });
+        function componentClaim(o)
+        {
+            _.each(o.components, function(elm, idx, l)
+                   { console.log("elm: " + elm); elm.owner = o });
+        };
+        
+        var ret = o;
+
+        componentClaim(ret);
+        ret.draw = _.bind(componentDraw, ret);
+        return ret;
     };
     
     function cPosition(x, y)
