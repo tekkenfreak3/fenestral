@@ -1,9 +1,7 @@
-var fenestral = {
-    run: function() {alert("foo"); fenestral.canvas = document.getElementById("canvas");},
+function Fenestral(){
+    var thingy;
+    this.setup = function() {thingy = new jaws.Sprite({image: "dinosphere.png", x: 0, y: 0});},
+    this.draw = function() { jaws.clear(); thingy.draw();}
 }
 
-fenestral.tile = function(row, col, image){
-    this.row = row;
-    this.col = col;
-    this.image = new Image(image);
-}
+

@@ -5,7 +5,10 @@
     <script src="jaws.js"></script>
     <script src="underscore-min.js"></script>
     <script src="fenestral.js"></script>
-    <script> window.onload = function(){fenestral.run();}</script>
+    <script> window.onload = function() {
+      jaws.assets.add("dinosphere.png");
+      jaws.start(Fenestral);
+      }</script>
     <title>Fenestral</title>
   </head>
   <body>
