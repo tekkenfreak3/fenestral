@@ -1,2 +1,4 @@
+var fenestral = {
+    run: function() {document.body.innerHTML = "Something.";}
+}
 
-document.getElementsByTagName("body")[0].innerHTML += "Something";
