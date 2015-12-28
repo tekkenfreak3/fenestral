@@ -1,4 +1,9 @@
 var fenestral = {
-    run: function() {document.body.innerHTML = "Something.";}
+    run: function() {alert("foo"); fenestral.canvas = document.getElementById("canvas");},
 }
 
+fenestral.tile = function(row, col, image){
+    this.row = row;
+    this.col = col;
+    this.image = new Image(image);
+}
