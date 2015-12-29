@@ -105,6 +105,27 @@ function Fenestral(){
             }
         }
     }
+    
+    function cHp(maxHP){
+        this.maxHP = maxHP;
+        this.currentHP = maxHP;
+        var rectangleWidth = 200;
+       
+        function damage(damage){
+            currentHP = currentHP - damage;
+        }
+       
+        this.draw = function(){
+            var drawWidth = currentHP / maxHP * rectangleWidth;
+            var ctx = jaws.context;
+            ctx.fillStyle="00ff00";
+            ctx.fillRect(20, 20, drawWidth, 50);
+           
+            ctx.rect(20,20,rectangleWidth, 50);
+            ctx.stroke();
+        }
+       
+    };
 }
 
 
