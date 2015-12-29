@@ -1,11 +1,11 @@
 function Fenestral(){
-    var thingy;
     var maptiles;
+    var thingy;
     var tileIdx = 0;
     this.setup = function()
     {
-        thingy = createObject({components: {position: new cPosition(0, 0), drawable: new cDrawable("dinosphere.png"), hp: new cHp(100)}});
-
+        this.thingy = createObject({components: {position: new cPosition(0, 0), drawable: new cDrawable("dinosphere.png"), hp: new cHp(100)}});
+        thingy = this.thingy;
         maptiles = new jaws.SpriteSheet({image: "tileset.png", frame_size: [16, 16], scale_image: 2});
     };
     
@@ -109,20 +109,19 @@ function Fenestral(){
     function cHp(maxHP){
         this.maxHP = maxHP;
         this.currentHP = maxHP;
-        var rectangleWidth = 200;
+        var rectangleWidth = 32;
        
-        function damage(damage){
+        this.damage = function(damage){
             this.currentHP = this.currentHP - damage;
         }
        
         this.draw = function(){
-        	this.currentHP = 50;
             var drawWidth = this.currentHP / maxHP * rectangleWidth;
             var ctx = jaws.context;
             ctx.fillStyle="#00ff00";
-            ctx.fillRect(0, 200, drawWidth, 50);
+            ctx.fillRect(this.owner.position.x, this.owner.position.y + 24, drawWidth, 8);
            
-            ctx.strokeStyle="black";
+            ctx.fillStyle="red";
             ctx.lineWidth="4";
             ctx.rect(0,200,rectangleWidth, 50);
             ctx.stroke();
