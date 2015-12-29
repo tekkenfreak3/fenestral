@@ -2,17 +2,34 @@ function Fenestral(){
     var maptiles;
     var thingy;
     var tileIdx = 0;
+
     this.setup = function()
     {
-        this.maptiles = new jaws.SpriteSheet({image: "tileset.png", frame_size: [16, 16], scale_image: 2, orientation: "right"});
-        maptiles = this.maptiles;
-        this.thingy = createObject({components: {position: new cPosition(0, 0), drawable: new cDrawable(maptiles.frames[114]), hp: new cHp(100)}});
+        function handleMap()
+        {
+
+        }
+        var reqTmp = new XMLHttpRequest();
+
+        reqTmp.open("GET", "map.json", false);
+        reqTmp.send(null);
+        var jsonMap = eval('(' + reqTmp.responseText + ')');
+        this.tiles = new jaws.SpriteSheet({image: "tileset.png", frame_size: [jsonMap.tilewidth, jsonMap.tileheight], scale_image: 1, orientation: "right"});
+        this.thingy = createObject({components: {position: new cPosition(0, 0), drawable: new cDrawable(this.tiles.frames[114]), hp: new cHp(100)}});
         thingy = this.thingy;
+
+        var tiles = this.tiles;
+        this.map = _.map(jsonMap.map, function(elm, idx, list)
+                         {
+                             return createObject({components: {position: new cPosition((idx / jsonMap.width) * jsonMap.tilewidth, (idx % jsonMap.width) * jsonMap.tileheight),
+                                                               drawable: new cDrawable(tiles.frames[(elm.tileY * jsonMap.width) + (elm.tileX)])}})
+                         });
+        
     };
     
     this.update = function()
     {
-        currentTile = new jaws.Sprite({image: maptiles.frames[tileIdx % maptiles.frames.length],
+        currentTile = new jaws.Sprite({image: this.tiles.frames[tileIdx % this.tiles.frames.length],
                                        x: 64, y: 64});
         tileIdx += 1;
     };
@@ -20,6 +37,7 @@ function Fenestral(){
     this.draw = function()
     {
         jaws.clear();
+        _.each(this.map, function(elm, idx, l){elm.draw()});
         thingy.draw();
         currentTile.draw();
     };
