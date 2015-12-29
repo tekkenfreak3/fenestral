@@ -62,6 +62,49 @@ function Fenestral(){
             this.sprite.draw();
         }
     };
+
+
+    // Just a rock paper scissors for now. sword beats axe, axe beats spear, spear
+    // beats sword.
+    // Functions are just markers, maybe add stuff later
+    var swordsman = 0;
+    var spearman = 1;
+    var axeman = 2;
+    function cFighter(type)
+    {
+        
+        this.type = type;
+        
+        function fight(other)
+        {
+            switch (this.type)
+            {
+                case swordsman:
+                if (other.components.fighter.type == this.type
+                    || other.components.fighter.type ==  axeman)
+                    return this;
+                else
+                    return other;
+                break;
+
+                case axeman:
+                if (other.components.fighter.type == axeman
+                   || other.components.fighter.type == spearman)
+                    return this;
+                else
+                    return other;
+                break;
+                
+                case spearman:
+                if (other.components.fighter.type == spearman
+                   || other.components.fighter.type == swordsman)
+                    return this;
+                else
+                    return other;
+                break;
+            }
+        }
+    }
 }
 
 
