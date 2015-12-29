@@ -4,9 +4,10 @@ function Fenestral(){
     var tileIdx = 0;
     this.setup = function()
     {
-        this.thingy = createObject({components: {position: new cPosition(0, 0), drawable: new cDrawable("dinosphere.png"), hp: new cHp(100)}});
+        this.maptiles = new jaws.SpriteSheet({image: "tileset.png", frame_size: [16, 16], scale_image: 2, orientation: "right"});
+        maptiles = this.maptiles;
+        this.thingy = createObject({components: {position: new cPosition(0, 0), drawable: new cDrawable(maptiles.frames[114]), hp: new cHp(100)}});
         thingy = this.thingy;
-        maptiles = new jaws.SpriteSheet({image: "tileset.png", frame_size: [16, 16], scale_image: 2});
     };
     
     this.update = function()
@@ -121,21 +122,21 @@ function Fenestral(){
             var ctx = jaws.context;
             
             if(hpPercent >= .75)
-            	ctx.fillStyle="#00ff00";
+            	ctx.fillStyle="rgba(0, 255, 0, 0.75)";
             else if(hpPercent >= .50)
-            	ctx.fillStyle="#ffff00";
+                ctx.fillStyle="rgba(255, 255, 0, 0.75)";
             else if(hpPercent >= .25)
-            	ctx.fillStyle="#ffaa00";
-            else 
-            	ctx.fillStyle="#ff0000";
+                ctx.fillStyle="rgba(255, 200, 0, 0.75)";
+            else
+                ctx.fillStyle="rgba(255, 0, 0, 0.75)";
             
             ctx.fillRect(this.owner.components.position.x,
-                         this.owner.components.position.y + 24,
-                         drawWidth, 8);
+                         this.owner.components.position.y + 28,
+                         drawWidth, 4);
            
-            ctx.lineWidth="2";
-            ctx.rect(this.owner.components.position.x, this.owner.components.position.y + 24,
-                     rectangleWidth, 8);
+            ctx.lineWidth="1";
+            ctx.rect(this.owner.components.position.x, this.owner.components.position.y + 28,
+                     rectangleWidth, 4);
             ctx.stroke();
         }
        
