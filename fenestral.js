@@ -21,7 +21,7 @@ function Fenestral(){
         var tiles = this.tiles;
         this.map = _.map(jsonMap.map, function(elm, idx, list)
                          {
-                             return createObject({components: {position: new cPosition(Math.floor((idx / jsonMap.width) * jsonMap.tilewidth), Math.floor((idx % jsonMap.width) * jsonMap.tileheight)),
+                             return createObject({components: {position: new cPosition(Math.floor((idx / jsonMap.width)) * jsonMap.tilewidth, Math.floor((idx % jsonMap.width) * jsonMap.tileheight)),
                                                                drawable: new cDrawable(tiles.frames[(elm.tileY * jsonMap.width) + (elm.tileX)])}})
                          });
         
