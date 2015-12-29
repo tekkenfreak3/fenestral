@@ -112,17 +112,19 @@ function Fenestral(){
         var rectangleWidth = 200;
        
         function damage(damage){
-            currentHP = currentHP - damage;
+            this.currentHP = this.currentHP - damage;
         }
        
         this.draw = function(){
-        	
-            var drawWidth = currentHP / maxHP * rectangleWidth;
+        	this.currentHP = 50;
+            var drawWidth = this.currentHP / maxHP * rectangleWidth;
             var ctx = jaws.context;
-            ctx.fillStyle="00ff00";
-            ctx.fillRect(20, 20, drawWidth, 50);
+            ctx.fillStyle="#00ff00";
+            ctx.fillRect(0, 200, drawWidth, 50);
            
-            ctx.rect(20,20,rectangleWidth, 50);
+            ctx.strokeStyle="black";
+            ctx.lineWidth="4";
+            ctx.rect(0,200,rectangleWidth, 50);
             ctx.stroke();
         }
        
