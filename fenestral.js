@@ -4,7 +4,7 @@ function Fenestral(){
     var tileIdx = 0;
     this.setup = function()
     {
-        thingy = createObject({components: {position: new cPosition(0, 0), drawable: new cDrawable("dinosphere.png")}});
+        thingy = createObject({components: {position: new cPosition(0, 0), drawable: new cDrawable("dinosphere.png"), hp: new cHp(100)}});
 
         maptiles = new jaws.SpriteSheet({image: "tileset.png", frame_size: [16, 16], scale_image: 2});
     };
@@ -116,6 +116,7 @@ function Fenestral(){
         }
        
         this.draw = function(){
+        	
             var drawWidth = currentHP / maxHP * rectangleWidth;
             var ctx = jaws.context;
             ctx.fillStyle="00ff00";
