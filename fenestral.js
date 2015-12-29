@@ -116,10 +116,20 @@ function Fenestral(){
         }
        
         this.draw = function(){
-            var drawWidth = this.currentHP / maxHP * rectangleWidth;
+        	var hpPercent = this.currentHP / maxHP;
+            var drawWidth =  hpPercent * rectangleWidth;
             var ctx = jaws.context;
-            ctx.fillStyle="#00ff00";
-            ctx.fillRect(this.owner.position.x, this.owner.position.y + 24, drawWidth, 8);
+            
+            if(hpPercent >= .75)
+            	ctx.fillStyle="#00ff00";
+            else if(hpPercent >= .50)
+            	ctx.fillStyle="yellow";
+            else if(hpPercent >= .25)
+            	ctx.fillStyle="orange";
+            else 
+            	ctx.fillStyle="red";
+            
+            ctx.fillRect(0, 200, drawWidth, 50);
            
             ctx.fillStyle="red";
             ctx.lineWidth="4";
