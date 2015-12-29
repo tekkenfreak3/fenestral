@@ -123,17 +123,19 @@ function Fenestral(){
             if(hpPercent >= .75)
             	ctx.fillStyle="#00ff00";
             else if(hpPercent >= .50)
-            	ctx.fillStyle="yellow";
+            	ctx.fillStyle="#ffff00";
             else if(hpPercent >= .25)
-            	ctx.fillStyle="orange";
+            	ctx.fillStyle="#ffaa00";
             else 
-            	ctx.fillStyle="red";
+            	ctx.fillStyle="#ff0000";
             
-            ctx.fillRect(0, 200, drawWidth, 50);
+            ctx.fillRect(this.owner.components.position.x,
+                         this.owner.components.position.y + 24,
+                         drawWidth, 8);
            
-            ctx.fillStyle="red";
-            ctx.lineWidth="4";
-            ctx.rect(0,200,rectangleWidth, 50);
+            ctx.lineWidth="2";
+            ctx.rect(this.owner.components.position.x, this.owner.components.position.y + 24,
+                     rectangleWidth, 8);
             ctx.stroke();
         }
        
